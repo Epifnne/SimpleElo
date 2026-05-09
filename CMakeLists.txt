@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.20)
+project(SimpleElo LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+option(SIMPLEELO_ENABLE_TESTS "Build tests" ON)
+option(SIMPLEELO_BUILD_SERVER "Build server target" ON)
+option(SIMPLEELO_BUILD_CLIENT "Build client target" ON)
+
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Don't build GLFW examples")
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "Don't build GLFW tests")
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "Don't build GLFW docs")
+set(GLFW_INSTALL OFF CACHE BOOL "Don't install GLFW")
+
+add_subdirectory(ThirdParty/nlohmann_json)
+add_subdirectory(shared)
+if(SIMPLEELO_BUILD_SERVER)
+  add_subdirectory(server)
+endif()
+if(SIMPLEELO_BUILD_CLIENT)
+  add_subdirectory(ThirdParty/glfw)
+  add_subdirectory(client)
+endif()
+
+if(SIMPLEELO_ENABLE_TESTS)
+  enable_testing()
+  add_subdirectory(ThirdParty/googletest)
+  add_subdirectory(tests)
+endif()

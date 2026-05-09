@@ -1,0 +1,974 @@
+﻿{
+    "rooms":  [
+                  {
+                      "players":  [
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "captain",
+                                          "roleScore":  10,
+                                          "online":  true,
+                                          "team":  "red",
+                                          "userId":  1,
+                                          "ready":  true
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "assassin",
+                                          "roleScore":  8,
+                                          "online":  true,
+                                          "team":  "blue",
+                                          "userId":  2,
+                                          "ready":  false
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "support",
+                                          "roleScore":  6,
+                                          "online":  true,
+                                          "team":  "red",
+                                          "userId":  3,
+                                          "ready":  true
+                                      },
+                                      {
+                                          "leftEarly":  true,
+                                          "role":  "tank",
+                                          "roleScore":  5,
+                                          "online":  false,
+                                          "team":  "blue",
+                                          "userId":  7,
+                                          "ready":  false
+                                      }
+                                  ],
+                      "roomPassword":  "",
+                      "locked":  false,
+                      "ownerUserId":  1,
+                      "gameStarted":  false,
+                      "roomId":  "room-1",
+                      "roomName":  "Ranked-1",
+                      "bpEnabled":  true
+                  },
+                  {
+                      "players":  [
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "captain",
+                                          "roleScore":  10,
+                                          "online":  true,
+                                          "team":  "red",
+                                          "userId":  4,
+                                          "ready":  true
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "adc",
+                                          "roleScore":  7,
+                                          "online":  true,
+                                          "team":  "blue",
+                                          "userId":  5,
+                                          "ready":  true
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "mid",
+                                          "roleScore":  8,
+                                          "online":  true,
+                                          "team":  "red",
+                                          "userId":  6,
+                                          "ready":  true
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "jungler",
+                                          "roleScore":  9,
+                                          "online":  true,
+                                          "team":  "blue",
+                                          "userId":  8,
+                                          "ready":  true
+                                      }
+                                  ],
+                      "roomPassword":  "",
+                      "locked":  false,
+                      "ownerUserId":  4,
+                      "gameStarted":  false,
+                      "roomId":  "room-2",
+                      "roomName":  "Ranked-2",
+                      "bpEnabled":  false
+                  },
+                  {
+                      "players":  [
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "captain",
+                                          "roleScore":  9,
+                                          "online":  true,
+                                          "team":  "red",
+                                          "userId":  9,
+                                          "ready":  false
+                                      },
+                                      {
+                                          "leftEarly":  false,
+                                          "role":  "support",
+                                          "roleScore":  7,
+                                          "online":  true,
+                                          "team":  "blue",
+                                          "userId":  10,
+                                          "ready":  false
+                                      }
+                                  ],
+                      "roomPassword":  "1234",
+                      "locked":  false,
+                      "ownerUserId":  9,
+                      "gameStarted":  false,
+                      "roomId":  "room-3",
+                      "roomName":  "Practice",
+                      "bpEnabled":  false
+                  }
+              ],
+    "deletedRooms":  [
+
+                     ],
+    "nextUserId":  11,
+    "users":  [
+                  {
+                      "nickname":  "owner",
+                      "losses":  4,
+                      "elo":  1032,
+                      "wins":  6,
+                      "email":  "owner@example.com",
+                      "userId":  1,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "member",
+                      "losses":  6,
+                      "elo":  998,
+                      "wins":  3,
+                      "email":  "member@example.com",
+                      "userId":  2,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "player",
+                      "losses":  5,
+                      "elo":  1015,
+                      "wins":  5,
+                      "email":  "player@example.com",
+                      "userId":  3,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "alpha",
+                      "losses":  3,
+                      "elo":  1048,
+                      "wins":  7,
+                      "email":  "alpha@example.com",
+                      "userId":  4,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "bravo",
+                      "losses":  7,
+                      "elo":  988,
+                      "wins":  2,
+                      "email":  "bravo@example.com",
+                      "userId":  5,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "charlie",
+                      "losses":  4,
+                      "elo":  1024,
+                      "wins":  6,
+                      "email":  "charlie@example.com",
+                      "userId":  6,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "delta",
+                      "losses":  8,
+                      "elo":  970,
+                      "wins":  1,
+                      "email":  "delta@example.com",
+                      "userId":  7,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "echo",
+                      "losses":  2,
+                      "elo":  1062,
+                      "wins":  8,
+                      "email":  "echo@example.com",
+                      "userId":  8,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "foxtrot",
+                      "losses":  5,
+                      "elo":  1006,
+                      "wins":  4,
+                      "email":  "foxtrot@example.com",
+                      "userId":  9,
+                      "passwordHash":  "11913469231378811836"
+                  },
+                  {
+                      "nickname":  "golf",
+                      "losses":  6,
+                      "elo":  993,
+                      "wins":  3,
+                      "email":  "golf@example.com",
+                      "userId":  10,
+                      "passwordHash":  "11913469231378811836"
+                  }
+              ],
+    "nextRoomCounter":  4,
+    "verifyCodes":  {
+                        "player@example.com":  "123456",
+                        "owner@example.com":  "123456",
+                        "member@example.com":  "123456",
+                        "golf@example.com":  "123456",
+                        "delta@example.com":  "123456",
+                        "charlie@example.com":  "123456",
+                        "foxtrot@example.com":  "123456",
+                        "alpha@example.com":  "123456",
+                        "echo@example.com":  "123456",
+                        "bravo@example.com":  "123456"
+                    },
+    "sessions":  {
+                     "token-8-seed":  8,
+                     "token-7-seed":  7,
+                     "token-5-seed":  5,
+                     "token-6-seed":  6,
+                     "token-9-seed":  9,
+                     "token-3-seed":  3,
+                     "token-4-seed":  4,
+                     "token-2-seed":  2,
+                     "token-1-seed":  1,
+                     "token-10-seed":  10
+                 },
+    "matches":  [
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1001",
+                        "voteDeadlineEpochSec":  1777971016,
+                        "effectiveVoters":  [
+                                                1,
+                                                3,
+                                                2,
+                                                7
+                                            ],
+                        "createdAtEpochSec":  1777970956,
+                        "idempotencyKey":  "idem-match-1001",
+                        "finalized":  true,
+                        "roomId":  "room-1",
+                        "approved":  [
+                                         1,
+                                         3,
+                                         2,
+                                         7
+                                     ],
+                        "ownerUserId":  1,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "blue",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1002",
+                        "voteDeadlineEpochSec":  1777972216,
+                        "effectiveVoters":  [
+                                                1,
+                                                2,
+                                                3,
+                                                6
+                                            ],
+                        "createdAtEpochSec":  1777972156,
+                        "idempotencyKey":  "idem-match-1002",
+                        "finalized":  true,
+                        "roomId":  "room-1",
+                        "approved":  [
+                                         1,
+                                         2,
+                                         3,
+                                         6
+                                     ],
+                        "ownerUserId":  1,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1003",
+                        "voteDeadlineEpochSec":  1777973416,
+                        "effectiveVoters":  [
+                                                4,
+                                                6,
+                                                5,
+                                                8
+                                            ],
+                        "createdAtEpochSec":  1777973356,
+                        "idempotencyKey":  "idem-match-1003",
+                        "finalized":  true,
+                        "roomId":  "room-2",
+                        "approved":  [
+                                         4,
+                                         6,
+                                         5,
+                                         8
+                                     ],
+                        "ownerUserId":  4,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "blue",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1004",
+                        "voteDeadlineEpochSec":  1777974616,
+                        "effectiveVoters":  [
+                                                4,
+                                                5,
+                                                6,
+                                                8
+                                            ],
+                        "createdAtEpochSec":  1777974556,
+                        "idempotencyKey":  "idem-match-1004",
+                        "finalized":  true,
+                        "roomId":  "room-2",
+                        "approved":  [
+                                         4,
+                                         5,
+                                         6,
+                                         8
+                                     ],
+                        "ownerUserId":  4,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1005",
+                        "voteDeadlineEpochSec":  1777975816,
+                        "effectiveVoters":  [
+                                                9,
+                                                10
+                                            ],
+                        "createdAtEpochSec":  1777975756,
+                        "idempotencyKey":  "idem-match-1005",
+                        "finalized":  true,
+                        "roomId":  "room-3",
+                        "approved":  [
+                                         9,
+                                         10
+                                     ],
+                        "ownerUserId":  9,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1006",
+                        "voteDeadlineEpochSec":  1777977016,
+                        "effectiveVoters":  [
+                                                1,
+                                                4,
+                                                2,
+                                                5
+                                            ],
+                        "createdAtEpochSec":  1777976956,
+                        "idempotencyKey":  "idem-match-1006",
+                        "finalized":  true,
+                        "roomId":  "room-1",
+                        "approved":  [
+                                         1,
+                                         4,
+                                         2,
+                                         5
+                                     ],
+                        "ownerUserId":  1,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "blue",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1007",
+                        "voteDeadlineEpochSec":  1777978216,
+                        "effectiveVoters":  [
+                                                3,
+                                                6,
+                                                8,
+                                                9
+                                            ],
+                        "createdAtEpochSec":  1777978156,
+                        "idempotencyKey":  "idem-match-1007",
+                        "finalized":  true,
+                        "roomId":  "room-1",
+                        "approved":  [
+                                         3,
+                                         6,
+                                         8,
+                                         9
+                                     ],
+                        "ownerUserId":  1,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1008",
+                        "voteDeadlineEpochSec":  1777979416,
+                        "effectiveVoters":  [
+                                                4,
+                                                8,
+                                                1,
+                                                10
+                                            ],
+                        "createdAtEpochSec":  1777979356,
+                        "idempotencyKey":  "idem-match-1008",
+                        "finalized":  true,
+                        "roomId":  "room-2",
+                        "approved":  [
+                                         4,
+                                         8,
+                                         1,
+                                         10
+                                     ],
+                        "ownerUserId":  4,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "blue",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1009",
+                        "voteDeadlineEpochSec":  1777980616,
+                        "effectiveVoters":  [
+                                                2,
+                                                7,
+                                                5,
+                                                6
+                                            ],
+                        "createdAtEpochSec":  1777980556,
+                        "idempotencyKey":  "idem-match-1009",
+                        "finalized":  true,
+                        "roomId":  "room-2",
+                        "approved":  [
+                                         2,
+                                         7,
+                                         5,
+                                         6
+                                     ],
+                        "ownerUserId":  4,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1010",
+                        "voteDeadlineEpochSec":  1777981816,
+                        "effectiveVoters":  [
+                                                9,
+                                                10,
+                                                3,
+                                                4
+                                            ],
+                        "createdAtEpochSec":  1777981756,
+                        "idempotencyKey":  "idem-match-1010",
+                        "finalized":  true,
+                        "roomId":  "room-3",
+                        "approved":  [
+                                         9,
+                                         10,
+                                         3,
+                                         4
+                                     ],
+                        "ownerUserId":  9,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "blue",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1011",
+                        "voteDeadlineEpochSec":  1777983016,
+                        "effectiveVoters":  [
+                                                1,
+                                                2,
+                                                8,
+                                                10
+                                            ],
+                        "createdAtEpochSec":  1777982956,
+                        "idempotencyKey":  "idem-match-1011",
+                        "finalized":  true,
+                        "roomId":  "room-1",
+                        "approved":  [
+                                         1,
+                                         2,
+                                         8,
+                                         10
+                                     ],
+                        "ownerUserId":  1,
+                        "passed":  true
+                    },
+                    {
+                        "winner":  "red",
+                        "rejected":  [
+
+                                     ],
+                        "matchId":  "match-1012",
+                        "voteDeadlineEpochSec":  1777984216,
+                        "effectiveVoters":  [
+                                                4,
+                                                6,
+                                                7,
+                                                9
+                                            ],
+                        "createdAtEpochSec":  1777984156,
+                        "idempotencyKey":  "idem-match-1012",
+                        "finalized":  true,
+                        "roomId":  "room-2",
+                        "approved":  [
+                                         4,
+                                         6,
+                                         7,
+                                         9
+                                     ],
+                        "ownerUserId":  4,
+                        "passed":  true
+                    }
+                ],
+    "matchHistory":  [
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1032,
+                             "matchId":  "match-1001",
+                             "userId":  1,
+                             "eloBefore":  1016
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1015,
+                             "matchId":  "match-1001",
+                             "userId":  3,
+                             "eloBefore":  999
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  998,
+                             "matchId":  "match-1001",
+                             "userId":  2,
+                             "eloBefore":  1014
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  970,
+                             "matchId":  "match-1001",
+                             "userId":  7,
+                             "eloBefore":  986
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  1032,
+                             "matchId":  "match-1002",
+                             "userId":  1,
+                             "eloBefore":  1048
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  998,
+                             "matchId":  "match-1002",
+                             "userId":  2,
+                             "eloBefore":  1014
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1015,
+                             "matchId":  "match-1002",
+                             "userId":  3,
+                             "eloBefore":  999
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1002",
+                             "userId":  6,
+                             "eloBefore":  1008
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1003",
+                             "userId":  4,
+                             "eloBefore":  1032
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1003",
+                             "userId":  6,
+                             "eloBefore":  1008
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  988,
+                             "matchId":  "match-1003",
+                             "userId":  5,
+                             "eloBefore":  1004
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  1062,
+                             "matchId":  "match-1003",
+                             "userId":  8,
+                             "eloBefore":  1078
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1004",
+                             "userId":  4,
+                             "eloBefore":  1064
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  988,
+                             "matchId":  "match-1004",
+                             "userId":  5,
+                             "eloBefore":  1004
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1004",
+                             "userId":  6,
+                             "eloBefore":  1008
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1062,
+                             "matchId":  "match-1004",
+                             "userId":  8,
+                             "eloBefore":  1046
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-3",
+                             "outcome":  "win",
+                             "eloAfter":  1006,
+                             "matchId":  "match-1005",
+                             "userId":  9,
+                             "eloBefore":  990
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-3",
+                             "outcome":  "lose",
+                             "eloAfter":  993,
+                             "matchId":  "match-1005",
+                             "userId":  10,
+                             "eloBefore":  1009
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1032,
+                             "matchId":  "match-1006",
+                             "userId":  1,
+                             "eloBefore":  1016
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1006",
+                             "userId":  4,
+                             "eloBefore":  1032
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  998,
+                             "matchId":  "match-1006",
+                             "userId":  2,
+                             "eloBefore":  1014
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  988,
+                             "matchId":  "match-1006",
+                             "userId":  5,
+                             "eloBefore":  1004
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  1015,
+                             "matchId":  "match-1007",
+                             "userId":  3,
+                             "eloBefore":  1031
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1007",
+                             "userId":  6,
+                             "eloBefore":  1040
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1062,
+                             "matchId":  "match-1007",
+                             "userId":  8,
+                             "eloBefore":  1046
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1006,
+                             "matchId":  "match-1007",
+                             "userId":  9,
+                             "eloBefore":  990
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1008",
+                             "userId":  4,
+                             "eloBefore":  1032
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1062,
+                             "matchId":  "match-1008",
+                             "userId":  8,
+                             "eloBefore":  1046
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  1032,
+                             "matchId":  "match-1008",
+                             "userId":  1,
+                             "eloBefore":  1048
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  993,
+                             "matchId":  "match-1008",
+                             "userId":  10,
+                             "eloBefore":  1009
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  998,
+                             "matchId":  "match-1009",
+                             "userId":  2,
+                             "eloBefore":  1014
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  970,
+                             "matchId":  "match-1009",
+                             "userId":  7,
+                             "eloBefore":  986
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  988,
+                             "matchId":  "match-1009",
+                             "userId":  5,
+                             "eloBefore":  972
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1009",
+                             "userId":  6,
+                             "eloBefore":  1008
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-3",
+                             "outcome":  "win",
+                             "eloAfter":  1006,
+                             "matchId":  "match-1010",
+                             "userId":  9,
+                             "eloBefore":  990
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-3",
+                             "outcome":  "win",
+                             "eloAfter":  993,
+                             "matchId":  "match-1010",
+                             "userId":  10,
+                             "eloBefore":  977
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-3",
+                             "outcome":  "lose",
+                             "eloAfter":  1015,
+                             "matchId":  "match-1010",
+                             "userId":  3,
+                             "eloBefore":  1031
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-3",
+                             "outcome":  "lose",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1010",
+                             "userId":  4,
+                             "eloBefore":  1064
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  1032,
+                             "matchId":  "match-1011",
+                             "userId":  1,
+                             "eloBefore":  1048
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-1",
+                             "outcome":  "lose",
+                             "eloAfter":  998,
+                             "matchId":  "match-1011",
+                             "userId":  2,
+                             "eloBefore":  1014
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  1062,
+                             "matchId":  "match-1011",
+                             "userId":  8,
+                             "eloBefore":  1046
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-1",
+                             "outcome":  "win",
+                             "eloAfter":  993,
+                             "matchId":  "match-1011",
+                             "userId":  10,
+                             "eloBefore":  977
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1048,
+                             "matchId":  "match-1012",
+                             "userId":  4,
+                             "eloBefore":  1032
+                         },
+                         {
+                             "delta":  16,
+                             "roomId":  "room-2",
+                             "outcome":  "win",
+                             "eloAfter":  1024,
+                             "matchId":  "match-1012",
+                             "userId":  6,
+                             "eloBefore":  1008
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  970,
+                             "matchId":  "match-1012",
+                             "userId":  7,
+                             "eloBefore":  986
+                         },
+                         {
+                             "delta":  -16,
+                             "roomId":  "room-2",
+                             "outcome":  "lose",
+                             "eloAfter":  1006,
+                             "matchId":  "match-1012",
+                             "userId":  9,
+                             "eloBefore":  1022
+                         }
+                     ]
+}

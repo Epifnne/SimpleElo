@@ -1,0 +1,46 @@
+# Agent guide
+Docs/
+.agents/
+
+# Third-party vendored source (kept locally, not tracked in main repo)
+ThirdParty/
+
+# Build artifacts
+Build/
+Bin/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+Makefile.cmake
+Makefile2
+install_manifest.txt
+
+# Visual Studio / IDE
+.vs/
+.vscode/
+.VSCodeCounter/
+*.vcxproj*
+*.sln
+*.user
+
+# Temporary files
+*.obj
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
+*.pdb
+*.ilk
+*.log
+
+# Editor files
+*~
+*.swp
+
+# Local runtime data
+imgui.ini
+serverData.backup.*.json
