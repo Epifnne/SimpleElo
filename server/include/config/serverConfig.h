@@ -8,7 +8,7 @@ namespace simpleelo::server {
 struct ServerConfig {
   std::string listenHost = "127.0.0.1";
   std::uint16_t listenPort = 18080;
-  std::string dataFilePath = "serverData.json";
+  std::string dataFilePath = "serverData.sqlite";
   std::string configFilePath = "server_config.json";
 };
 

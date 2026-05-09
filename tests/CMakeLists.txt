@@ -1,4 +1,5 @@
 add_executable(simpleelo_tests
+  glicko2Tests.cpp
   jsonCodecTests.cpp
 )
 

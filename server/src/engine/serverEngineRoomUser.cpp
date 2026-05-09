@@ -21,7 +21,15 @@ std::string jsonErr(int code, const std::string& message) {
 }
 
 json userToJson(const UserRecord& u) {
-  return {{"userId", u.userId}, {"email", u.email}, {"nickname", u.nickname}, {"elo", u.elo}, {"wins", u.wins}, {"losses", u.losses}};
+  return {{"userId", u.userId},
+          {"email", u.email},
+          {"nickname", u.nickname},
+          {"elo", u.elo},
+          {"glickoRating", u.glickoRating},
+          {"glickoRd", u.glickoRd},
+          {"glickoVolatility", u.glickoVolatility},
+          {"wins", u.wins},
+          {"losses", u.losses}};
 }
 
 }  // namespace
@@ -277,8 +285,12 @@ std::string ServerEngine::handleGetRoomDetail(const nlohmann::json& req) {
     return jsonErr(437, "room not found");
   }
 
-  int redTotal = 0;
-  int blueTotal = 0;
+  double redRatingTotal = 0.0;
+  double blueRatingTotal = 0.0;
+  double redRdTotal = 0.0;
+  double blueRdTotal = 0.0;
+  double redVolTotal = 0.0;
+  double blueVolTotal = 0.0;
   int redCount = 0;
   int blueCount = 0;
   for (const auto& [uid, p] : roomIt->second.players) {
@@ -288,10 +300,14 @@ std::string ServerEngine::handleGetRoomDetail(const nlohmann::json& req) {
       continue;
     }
     if (p.team == "blue") {
-      blueTotal += userIt->second.elo;
+      blueRatingTotal += userIt->second.glickoRating;
+      blueRdTotal += userIt->second.glickoRd;
+      blueVolTotal += userIt->second.glickoVolatility;
       ++blueCount;
     } else {
-      redTotal += userIt->second.elo;
+      redRatingTotal += userIt->second.glickoRating;
+      redRdTotal += userIt->second.glickoRd;
+      redVolTotal += userIt->second.glickoVolatility;
       ++redCount;
     }
   }
@@ -299,11 +315,18 @@ std::string ServerEngine::handleGetRoomDetail(const nlohmann::json& req) {
   int redDelta = 0;
   int blueDelta = 0;
   if (redCount > 0 && blueCount > 0) {
-    const int redAvg = redTotal / redCount;
-    const int blueAvg = blueTotal / blueCount;
-    const auto [redWinAfter, blueLoseAfter] = simpleelo::elo::updateTeamElo(redAvg, blueAvg, simpleelo::elo::EloConfig{});
-    redDelta = redWinAfter - redAvg;
-    blueDelta = blueLoseAfter - blueAvg;
+    const simpleelo::elo::Glicko2Rating redAvg{
+        redRatingTotal / static_cast<double>(redCount),
+        redRdTotal / static_cast<double>(redCount),
+        redVolTotal / static_cast<double>(redCount)};
+    const simpleelo::elo::Glicko2Rating blueAvg{
+        blueRatingTotal / static_cast<double>(blueCount),
+        blueRdTotal / static_cast<double>(blueCount),
+        blueVolTotal / static_cast<double>(blueCount)};
+
+    const auto predicted = simpleelo::elo::updateHeadToHeadGlicko2(redAvg, blueAvg, 1.0, 1.0);
+    redDelta = simpleelo::elo::ratingToDisplay(predicted.firstAfter) - simpleelo::elo::ratingToDisplay(redAvg);
+    blueDelta = simpleelo::elo::ratingToDisplay(predicted.secondAfter) - simpleelo::elo::ratingToDisplay(blueAvg);
   }
 
   json teamRed = json::array();

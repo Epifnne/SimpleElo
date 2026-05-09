@@ -2,6 +2,8 @@
 
 #include <fstream>
 
+#include "repo/sqliteRepo.h"
+
 namespace simpleelo::server {
 namespace {
 
@@ -12,13 +14,14 @@ using nlohmann::json;
 bool ServerEngine::load() {
   std::scoped_lock lock(mutex_);
   try {
-    std::ifstream input(dataFilePath_);
-    if (!input.good()) {
+    json root;
+    bool found = false;
+    if (!repo::loadState(dataFilePath_, root, found)) {
+      return false;
+    }
+    if (!found) {
       return true;
     }
-
-    json root;
-    input >> root;
 
     nextUserId_ = root.value("nextUserId", 1);
     nextRoomCounter_ = root.value("nextRoomCounter", 1);
@@ -32,6 +35,9 @@ bool ServerEngine::load() {
       u.nickname = v.value("nickname", "");
       u.passwordHash = v.value("passwordHash", "");
       u.elo = v.value("elo", 1000);
+      u.glickoRating = v.value("glickoRating", static_cast<double>(u.elo));
+      u.glickoRd = v.value("glickoRd", 350.0);
+      u.glickoVolatility = v.value("glickoVolatility", 0.06);
       u.wins = v.value("wins", 0);
       u.losses = v.value("losses", 0);
       usersById_[u.userId] = u;
@@ -159,6 +165,9 @@ bool ServerEngine::save() {
         {"nickname", user.nickname},
         {"passwordHash", user.passwordHash},
         {"elo", user.elo},
+      {"glickoRating", user.glickoRating},
+      {"glickoRd", user.glickoRd},
+      {"glickoVolatility", user.glickoVolatility},
         {"wins", user.wins},
         {"losses", user.losses},
     });
@@ -240,9 +249,7 @@ bool ServerEngine::save() {
     });
   }
 
-  std::ofstream output(dataFilePath_, std::ios::trunc);
-  output << root.dump(2);
-  return output.good();
+  return repo::saveState(dataFilePath_, root);
 }
 
 }  // namespace simpleelo::server

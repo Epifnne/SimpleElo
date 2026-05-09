@@ -18,6 +18,9 @@ struct UserRecord {
   std::string nickname;
   std::string passwordHash;
   int elo = 1000;
+  double glickoRating = 1000.0;
+  double glickoRd = 350.0;
+  double glickoVolatility = 0.06;
   int wins = 0;
   int losses = 0;
 };

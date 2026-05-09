@@ -1,5 +1,7 @@
 #include "serverEngine.h"
 
+#include <algorithm>
+
 #include "elo/eloCalculator.h"
 #include "protocol/api.h"
 
@@ -20,6 +22,19 @@ std::string jsonErr(int code, const std::string& message) {
   return json({{"code", code}, {"message", message}}).dump();
 }
 
+double sumWeightedVotes(const std::unordered_set<std::int64_t>& voters,
+                        const std::unordered_map<std::int64_t, UserRecord>& usersById) {
+  double total = 0.0;
+  for (const std::int64_t voterId : voters) {
+    const auto userIt = usersById.find(voterId);
+    if (userIt == usersById.end()) {
+      continue;
+    }
+    total += simpleelo::elo::voteWeightFromRd(userIt->second.glickoRd);
+  }
+  return total;
+}
+
 }  // namespace
 
 void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineCheck) {
@@ -30,9 +45,14 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
   const int total = static_cast<int>(match.effectiveVoters.size());
   const int approved = static_cast<int>(match.approved.size());
   const int rejected = static_cast<int>(match.rejected.size());
+    const double totalWeight = sumWeightedVotes(match.effectiveVoters, usersById_);
+    const double approvedWeight = sumWeightedVotes(match.approved, usersById_);
+    const double rejectedWeight = sumWeightedVotes(match.rejected, usersById_);
   const bool deadlineReached = nowEpochSec() >= match.voteDeadlineEpochSec;
-  const bool hasMajorityApprove = approved > total / 2;
-  const bool hasMajorityReject = rejected >= (total - total / 2);
+    const bool hasMajorityApprove =
+      (totalWeight > 0.0) ? (approvedWeight > totalWeight / 2.0) : (approved > total / 2);
+    const bool hasMajorityReject =
+      (totalWeight > 0.0) ? (rejectedWeight >= totalWeight / 2.0) : (rejected >= (total - total / 2));
 
   if (!hasMajorityApprove && !hasMajorityReject && !(forceDeadlineCheck && deadlineReached)) {
     return;
@@ -49,8 +69,12 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
     return;
   }
 
-  int redTotal = 0;
-  int blueTotal = 0;
+  double redRatingTotal = 0.0;
+  double blueRatingTotal = 0.0;
+  double redRdTotal = 0.0;
+  double blueRdTotal = 0.0;
+  double redVolTotal = 0.0;
+  double blueVolTotal = 0.0;
   int redCount = 0;
   int blueCount = 0;
   for (const auto& [uid, p] : roomIt->second.players) {
@@ -60,10 +84,14 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
       continue;
     }
     if (p.team == "blue") {
-      blueTotal += userIt->second.elo;
+      blueRatingTotal += userIt->second.glickoRating;
+      blueRdTotal += userIt->second.glickoRd;
+      blueVolTotal += userIt->second.glickoVolatility;
       ++blueCount;
     } else {
-      redTotal += userIt->second.elo;
+      redRatingTotal += userIt->second.glickoRating;
+      redRdTotal += userIt->second.glickoRd;
+      redVolTotal += userIt->second.glickoVolatility;
       ++redCount;
     }
   }
@@ -71,17 +99,22 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
     return;
   }
 
-  const int redAvg = redTotal / redCount;
-  const int blueAvg = blueTotal / blueCount;
+    const simpleelo::elo::Glicko2Rating redAvg{
+      redRatingTotal / static_cast<double>(redCount),
+      redRdTotal / static_cast<double>(redCount),
+      redVolTotal / static_cast<double>(redCount)};
+    const simpleelo::elo::Glicko2Rating blueAvg{
+      blueRatingTotal / static_cast<double>(blueCount),
+      blueRdTotal / static_cast<double>(blueCount),
+      blueVolTotal / static_cast<double>(blueCount)};
   const bool redWin = match.winner != "blue";
 
-  const auto [winnerAfter, loserAfter] = simpleelo::elo::updateTeamElo(
-      redWin ? redAvg : blueAvg,
-      redWin ? blueAvg : redAvg,
-      simpleelo::elo::EloConfig{});
-
-  const int winnerDelta = winnerAfter - (redWin ? redAvg : blueAvg);
-  const int loserDelta = loserAfter - (redWin ? blueAvg : redAvg);
+    const double voteParticipationWeight =
+      (totalWeight > 0.0) ? std::clamp((approvedWeight + rejectedWeight) / totalWeight, 0.0, 1.0) : 0.0;
+    const double voteConsensus =
+      (approvedWeight + rejectedWeight > 0.0) ? (approvedWeight / (approvedWeight + rejectedWeight)) : 0.5;
+    const double winnerScore = std::clamp(voteConsensus, 0.5, 1.0);
+    const double loserScore = 1.0 - winnerScore;
 
   for (const auto& [uid, p] : roomIt->second.players) {
     (void)uid;
@@ -90,9 +123,23 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
       continue;
     }
     const bool onWinner = (redWin && p.team == "red") || (!redWin && p.team == "blue");
+    const simpleelo::elo::Glicko2Rating beforeRating{
+      userIt->second.glickoRating,
+      userIt->second.glickoRd,
+      userIt->second.glickoVolatility};
+    const simpleelo::elo::Glicko2Rating oppAvg = (p.team == "blue") ? redAvg : blueAvg;
+    const auto updated = simpleelo::elo::updateHeadToHeadGlicko2(
+      beforeRating,
+      oppAvg,
+      onWinner ? winnerScore : loserScore,
+      voteParticipationWeight);
+
     const int before = userIt->second.elo;
-    const int delta = onWinner ? winnerDelta : loserDelta;
-    userIt->second.elo += delta;
+    userIt->second.glickoRating = updated.firstAfter.rating;
+    userIt->second.glickoRd = updated.firstAfter.rd;
+    userIt->second.glickoVolatility = updated.firstAfter.volatility;
+    userIt->second.elo = simpleelo::elo::ratingToDisplay(updated.firstAfter);
+    const int delta = userIt->second.elo - before;
     if (onWinner) {
       userIt->second.wins += 1;
     } else {
@@ -112,6 +159,9 @@ void ServerEngine::finalizeMatchIfNeeded(MatchRecord& match, bool forceDeadlineC
 
 nlohmann::json ServerEngine::buildMatchStatus(const MatchRecord& match) const {
   const int total = static_cast<int>(match.effectiveVoters.size());
+  const double approvedWeight = sumWeightedVotes(match.approved, usersById_);
+  const double rejectedWeight = sumWeightedVotes(match.rejected, usersById_);
+  const double totalWeight = sumWeightedVotes(match.effectiveVoters, usersById_);
   nlohmann::json teamRed = nlohmann::json::array();
   nlohmann::json teamBlue = nlohmann::json::array();
   for (const auto& row : match.snapshotPlayers) {
@@ -130,6 +180,9 @@ nlohmann::json ServerEngine::buildMatchStatus(const MatchRecord& match) const {
       {"approved", static_cast<int>(match.approved.size())},
       {"rejected", static_cast<int>(match.rejected.size())},
       {"totalEffective", total},
+      {"approvedWeight", approvedWeight},
+      {"rejectedWeight", rejectedWeight},
+      {"totalEffectiveWeight", totalWeight},
       {"deadlineEpochSec", match.voteDeadlineEpochSec},
       {"finalized", match.finalized},
       {"passed", match.passed},
